@@ -43,7 +43,7 @@ pub(crate) struct ChainNode {
 const EXCLUDE_CHAINS: [&str; 3] = [
     "Arctic Relay Testnet",
     "Aleph Zero Testnet", //TODO name matches with mainnet and will override it
-    "Crust",              //Specs(Base58PrefixMismatch { specs: 66, meta: 88 })
+    "Hashed Network",              // Specs(Base58PrefixMismatch { specs: 9072, meta: 42 })
 ];
 
 pub(crate) fn update_chains_config(chains_opts: ChainsOpts) -> Result<()> {
