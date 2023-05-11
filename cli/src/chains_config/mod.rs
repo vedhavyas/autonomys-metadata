@@ -65,7 +65,7 @@ pub(crate) fn update_chains_config(chains_opts: ChainsOpts) -> Result<()> {
             "config.toml",
             "public/data.json",
             format!(
-                "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/chains/{}/{}",
+                "https://raw.githubusercontent.com/nova-wallet/nova-utils/main/chains/{}/{}",
                 chains_opts.version, "chains.json"
             ),
             "public/qr",
