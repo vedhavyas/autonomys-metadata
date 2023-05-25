@@ -795,7 +795,7 @@ testnet = false
 verifier = 'novasama'
 
 [[chains]]
-name = 'Darwinia Parachain'
+name = 'Darwinia2'
 title = 'Darwinia'
 color = '#FF0083'
 icon = 'https://raw.githubusercontent.com/nova-wallet/nova-utils/master/icons/chains/gradient/Darwinia.svg'
