@@ -43,7 +43,7 @@ pub(crate) struct ChainNode {
 const EXCLUDE_CHAINS: [&str; 3] = [
     "Arctic Relay Testnet",
     "Aleph Zero Testnet", //TODO name matches with mainnet and will override it
-    "Hashed Network",              // Specs(Base58PrefixMismatch { specs: 9072, meta: 42 })
+    "Hashed Network",     // Specs(Base58PrefixMismatch { specs: 9072, meta: 42 })
 ];
 
 pub(crate) fn update_chains_config(chains_opts: ChainsOpts) -> Result<()> {
@@ -56,7 +56,7 @@ pub(crate) fn update_chains_config(chains_opts: ChainsOpts) -> Result<()> {
             "config_dev.toml",
             "public/data_dev.json",
             format!(
-                "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/chains/{}/{}",
+                "https://raw.githubusercontent.com/novasamatech/nova-utils/master/chains/{}/{}",
                 chains_opts.version, "chains_dev.json"
             ),
             "public/qr_dev",
@@ -65,7 +65,7 @@ pub(crate) fn update_chains_config(chains_opts: ChainsOpts) -> Result<()> {
             "config.toml",
             "public/data.json",
             format!(
-                "https://raw.githubusercontent.com/nova-wallet/nova-utils/master/chains/{}/{}",
+                "https://raw.githubusercontent.com/novasamatech/nova-utils/master/chains/{}/{}",
                 chains_opts.version, "chains.json"
             ),
             "public/qr",

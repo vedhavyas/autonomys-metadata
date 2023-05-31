@@ -17,7 +17,7 @@ mod verifier;
 
 use std::process::exit;
 
-use clap::StructOpt;
+use clap::Parser;
 use env_logger::Env;
 use log::error;
 
