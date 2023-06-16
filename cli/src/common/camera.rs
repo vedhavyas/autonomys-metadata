@@ -1,6 +1,6 @@
 use std::path::Path;
 
-use anyhow::{bail, Error};
+use anyhow::bail;
 use image::{GrayImage, ImageBuffer, Luma};
 use indicatif::ProgressBar;
 use opencv::{
@@ -37,6 +37,14 @@ pub(crate) fn read_qr_file(source_file: &Path) -> anyhow::Result<String> {
                 pb.finish_and_clear();
                 line.push_str(&hex::encode(a));
                 break;
+            }
+            Ready::BananaSplitPasswordRequest => {
+                pb.finish_and_clear();
+                bail!("Banana split is not supported.");
+            }
+            Ready::BananaSplitReady(_) => {
+                pb.finish_and_clear();
+                bail!("Banana split is not supported.");
             }
         }
     }
@@ -80,10 +88,9 @@ fn process_qr_image(image: &GrayImage, decoding: InProgress) -> anyhow::Result<R
 
     match codes.last() {
         Some(Ok(code)) => match code.decode() {
-            Ok(decoded) => match process_decoded_payload(decoded.payload, decoding) {
-                Ok(result) => Ok(result),
-                Err(_) => Err(Error::msg("error")),
-            },
+            Ok(decoded) => {
+                process_decoded_payload(decoded.payload, &None, decoding).map_err(|e| e.into())
+            }
             Err(_) => Ok(Ready::NotYet(decoding)),
         },
         Some(_) => Ok(Ready::NotYet(decoding)),

@@ -1,9 +1,9 @@
+pub(crate) type ChainName = String;
+pub(crate) type MetaVersion = u32;
+
 use definitions::crypto::Encryption;
 
 use crate::config::Chain;
-
-pub(crate) type ChainName = String;
-pub(crate) type SpecVersion = u32;
 
 pub(crate) fn get_crypto(chain: &Chain) -> Encryption {
     match &chain.encryption {

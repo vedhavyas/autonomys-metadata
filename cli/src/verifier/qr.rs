@@ -12,10 +12,10 @@ use definitions::qr_transfers::ContentLoadMeta;
 use log::info;
 use transaction_parsing::check_signature::pass_crypto;
 
+use crate::common::camera::read_qr_file;
+use crate::common::path::{ContentType, QrFileName, QrPath};
 use crate::config::Verifier;
 use crate::qrs::qrs_in_dir;
-use crate::utils::camera::read_qr_file;
-use crate::utils::path::{ContentType, QrFileName, QrPath};
 use crate::AppConfig;
 
 pub(crate) fn validate_signed_qrs(dir: impl AsRef<Path>, config: &AppConfig) -> Result<()> {

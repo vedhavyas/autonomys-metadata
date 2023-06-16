@@ -14,7 +14,7 @@ use generate_message::parser::{
 use log::info;
 use sp_core::{ecdsa, sr25519, Pair, H256};
 
-use crate::utils::path::{ContentType, QrFileName};
+use crate::common::path::{ContentType, QrFileName};
 
 pub(crate) fn generate_metadata_qr(
     meta_values: &MetaValues,

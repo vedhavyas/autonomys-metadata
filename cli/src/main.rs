@@ -3,6 +3,7 @@ extern crate core;
 mod chains_config;
 mod cleaner;
 mod collector;
+mod common;
 mod config;
 mod deployment_checker;
 mod export;
@@ -12,7 +13,6 @@ mod qrs;
 mod signer;
 mod source;
 mod updater;
-mod utils;
 mod verifier;
 
 use std::process::exit;

@@ -15,12 +15,12 @@ use generate_message::parser::{
 use qr_reader_pc::{run_with_camera, CameraSettings};
 use transaction_parsing::check_signature::pass_crypto;
 
+use crate::common::camera::read_qr_file;
+use crate::common::path::{ContentType, QrPath};
 use crate::config::AppConfig;
 use crate::qrs::qrs_in_dir;
 use crate::signer::prompt::{select_file, want_to_continue};
 use crate::source::{read_png_source, save_source_info};
-use crate::utils::camera::read_qr_file;
-use crate::utils::path::{ContentType, QrPath};
 
 pub(crate) fn sign(config: AppConfig) -> anyhow::Result<()> {
     let mut files_to_sign: Vec<QrPath> = qrs_in_dir(config.qr_dir)?
@@ -78,6 +78,9 @@ fn sign_qr(unsigned_qr: &QrPath, signature: String) -> anyhow::Result<QrPath> {
     let mut f = File::create(&content_file)?;
     f.write_all(passed_crypto.message.deref())?;
 
+    //todo get from the config file
+    let signing_algorithm = Encryption::Sr25519;
+
     let make = Make {
         goal: Goal::Qr,
         verifier: Verifier {
@@ -98,9 +101,9 @@ fn sign_qr(unsigned_qr: &QrPath, signature: String) -> anyhow::Result<QrPath> {
         files_dir: signed_qr.dir.clone(),
         payload: content_file,
         export_dir: signed_qr.dir.clone(),
-        crypto: Some(Encryption::Sr25519),
+        crypto: Some(signing_algorithm),
     };
-    println!("⚙ generating {}...", signed_qr);
+    println!("⚙ generating {signed_qr}...");
     full_run(SignerCommand::Make(make)).map_err(|e| anyhow!("{:?}", e))?;
     // Preserve png source information
     if let Some(png_source) = read_png_source(&unsigned_qr.to_path_buf())? {

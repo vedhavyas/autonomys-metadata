@@ -10,14 +10,14 @@ use blake2_rfc::blake2b::blake2b;
 use log::{info, warn};
 use sp_core::H256;
 
+use crate::common::types::get_crypto;
 use crate::config::AppConfig;
 use crate::fetch::Fetcher;
-use crate::qrs::{find_metadata_qrs, find_spec_qrs};
+use crate::qrs::{metadata_files, spec_files};
 use crate::source::{save_source_info, Source};
 use crate::updater::generate::{download_metadata_qr, generate_metadata_qr, generate_spec_qr};
 use crate::updater::github::fetch_latest_runtime;
 use crate::updater::wasm::{download_wasm, meta_values_from_wasm_bytes};
-use crate::utils::types::get_crypto;
 
 pub(crate) fn update_from_node(
     config: AppConfig,
@@ -25,8 +25,8 @@ pub(crate) fn update_from_node(
     signing_key: String,
     fetcher: impl Fetcher,
 ) -> anyhow::Result<()> {
-    let metadata_qrs = find_metadata_qrs(&config.qr_dir)?;
-    let specs_qrs = find_spec_qrs(&config.qr_dir)?;
+    let metadata_qrs = metadata_files(&config.qr_dir)?;
+    let specs_qrs = spec_files(&config.qr_dir)?;
     let mut is_changed = false;
     let mut error_fetching_data = false;
     for chain in config.chains {
@@ -116,7 +116,7 @@ pub(crate) async fn update_from_github(
     sign: bool,
     signing_key: String,
 ) -> anyhow::Result<()> {
-    let metadata_qrs = find_metadata_qrs(&config.qr_dir)?;
+    let metadata_qrs = metadata_files(&config.qr_dir)?;
     for chain in config.chains {
         info!("🔍 Checking for updates for {}", chain.name);
         if chain.github_release.is_none() {
