@@ -7,7 +7,7 @@ use crate::updater::source::UpdateSource;
 #[derive(Parser)]
 pub(crate) struct Opts {
     /// Path to config file
-    #[clap(short, long, default_value = "config.toml")]
+    #[arg(short, long, default_value = "config.toml")]
     pub(crate) config: PathBuf,
 
     #[clap(subcommand)]
