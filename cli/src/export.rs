@@ -58,13 +58,6 @@ pub(crate) struct MetadataQr {
     pub(crate) file: QrCode,
 }
 
-#[derive(Serialize, Deserialize, Debug, PartialEq)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct MetadataQr {
-    pub(crate) version: u32,
-    pub(crate) file: QrCode,
-}
-
 pub(crate) type ExportData = IndexMap<ChainName, ExportChainSpec>;
 
 pub(crate) fn read_export_file(config: &AppConfig) -> Result<ExportData> {

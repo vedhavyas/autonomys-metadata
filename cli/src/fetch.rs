@@ -8,7 +8,6 @@ use log::warn;
 
 use crate::common::types::get_crypto;
 use crate::config::Chain;
-use crate::ethereum::is_ethereum;
 
 pub(crate) trait Fetcher {
     fn fetch_specs(&self, chain: &Chain) -> Result<NetworkSpecs>;
