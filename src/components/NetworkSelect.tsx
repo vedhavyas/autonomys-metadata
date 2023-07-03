@@ -21,7 +21,7 @@ export const NetworkSelect = ({
   };
 
   const filteredItems = chainList.filter((item) =>
-    item.toLowerCase().includes(searchString.toLowerCase())
+    chains[item].title.toLowerCase().includes(searchString.toLowerCase())
   );
   return (
     <div className="w-full">
