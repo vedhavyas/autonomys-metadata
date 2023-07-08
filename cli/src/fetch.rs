@@ -20,12 +20,12 @@ where
     F: Fn(&str) -> Result<T, generate_message::Error>,
 {
     for url in urls.iter() {
-        for i in 1..7 {
+        for i in 1..3 {
             match f(url) {
                 Ok(res) => return Ok(res),
                 Err(e) => warn!("Failed to fetch {}: {:?}", url, e),
             }
-            let interval_seconds = time::Duration::from_secs(5 * i);
+            let interval_seconds = time::Duration::from_secs(1 * i);
             thread::sleep(interval_seconds);
         }
     }
