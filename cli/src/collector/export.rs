@@ -4,7 +4,7 @@ use std::path::PathBuf;
 
 use anyhow::{Context, Result};
 use indexmap::IndexMap;
-use log::info;
+use log::{info, warn};
 
 use crate::common::path::{ContentType, QrPath};
 use crate::common::types::MetaVersion;
@@ -20,8 +20,18 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: impl Fetcher) -> Result<
     let mut export_specs = IndexMap::new();
     for chain in &config.chains {
         info!("Collecting {} info...", chain.name);
-        let specs = fetcher.fetch_specs(chain)?;
-        let meta = fetcher.fetch_metadata(chain)?;
+        let specs_result = fetcher.fetch_specs(chain);
+        if specs_result.is_err() {
+            warn!("No spec found for {}", chain.name);
+            continue;
+        }
+        let specs = specs_result.unwrap();
+        let meta_result = fetcher.fetch_metadata(chain);
+        if meta_result.is_err() {
+            warn!("No latest metadata found for {}", chain.name);
+            continue;
+        }
+        let meta = meta_result.unwrap();
         let live_meta_version = meta.meta_values.version;
 
         let metadata_qrs = collect_metadata_qrs(&all_metadata, &chain.name, &live_meta_version)?;
