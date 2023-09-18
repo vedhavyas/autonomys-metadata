@@ -30,7 +30,7 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: run
-          args: --release -- update-chain-config --env ${{ github.event.inputs.environment }} --version ${{ env.$NOVA_CONFIG_VERSION }}
+          args: --release -- update-chain-config --env ${{ github.event.inputs.environment }} --version ${{ env.NOVA_CONFIG_VERSION }}
 
       - name: 🗓️Get current date
         id: date
