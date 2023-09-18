@@ -18,7 +18,7 @@ jobs:
     steps:
       - name: Setup version to variables
         run: |
-          echo "NOVA_CONFIG_VERSION=$(bash ./.github/get_actual_path.sh nova-utils/chains)" >> "$GITHUB_ENV"
+          echo "NOVA_CONFIG_VERSION=$(bash .github/get_actual_path.sh nova-utils/chains)" >> "$GITHUB_ENV"
         shell: bash
 
       - name: 🛎 Checkout
