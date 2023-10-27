@@ -897,3 +897,13 @@ rpc_endpoints = [
 ]
 testnet = false
 verifier = "novasama"
+
+[[chains]]
+name = "watr-mainnet"
+title = "Watr Mainnet"
+icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/gradient/Watr.svg"
+rpc_endpoints = [
+    "wss://watr-rpc.watr-api.network"
+]
+testnet = false
+verifier = "novasama"
