@@ -77,7 +77,7 @@ pub(crate) fn update_from_node(
         }
         if chain.verifier == "parity" {
             download_metadata_qr(
-                "https://metadata.parity.io/qr",
+                "https://github.com/paritytech/metadata-portal/raw/master/public/qr",
                 &fetched_meta.meta_values,
                 &config.qr_dir,
             )?;
