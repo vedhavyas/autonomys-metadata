@@ -211,8 +211,8 @@ pub(crate) fn update_chains_config(chains_opts: ChainsOpts) -> Result<()> {
     }
     for chain in config_template.inject_chains {
         chains.push(Chain {
-            name: String::from(chain.title.clone()),
-            title: Some(chain.name.clone()),
+            name: String::from(chain.name.clone()),
+            title: Some(chain.title.clone()),
             color: chain.color,
             icon: chain.icon.clone(),
             rpc_endpoints: chain.rpc_endpoints,
