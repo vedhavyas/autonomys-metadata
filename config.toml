@@ -2,14 +2,14 @@ data_file = "public/data.json"
 public_dir = "public"
 qr_dir = "public/qr"
 
+[verifiers.parity]
+name = "Parity"
+public_key = "c46a22b9da19540a77cbde23197e5fd90485c72b4ecf3c599ecca6998f39bd57"
+
 [verifiers.novasama]
 name = "Novasama Technologies"
 public_key = "16d5a6266345874d8f5b7f88a6619711b2829b52b2865826b1ecefb62beef34f"
 ethereum_public_key = "031b195495f907908aeedd8e9a0ae128dcf23b6a7425dd16d282df7d867855e7f1"
-
-[verifiers.parity]
-name = "Parity"
-public_key = "c46a22b9da19540a77cbde23197e5fd90485c72b4ecf3c599ecca6998f39bd57"
 
 [[chains]]
 name = "polkadot"
@@ -17,6 +17,7 @@ title = "Polkadot"
 color = "#e6007a"
 icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/gradient/Polkadot.svg"
 rpc_endpoints = [
+    "wss://api-polkadot-full.dwellir.com/{DWELLIR_API_KEY}",
     "wss://polkadot.public.curie.radiumblock.co/ws",
     "wss://dot-rpc.stakeworld.io",
     "wss://polkadot-rpc.dwellir.com",
@@ -700,6 +701,15 @@ testnet = false
 verifier = "novasama"
 
 [[chains]]
+name = "avn-parachain"
+title = "Aventus"
+color = "#000000"
+icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/gradient/Aventus.svg"
+rpc_endpoints = ["wss://public-rpc.mainnet.aventus.io"]
+testnet = false
+verifier = "novasama"
+
+[[chains]]
 name = "node-subtensor"
 title = "Bittensor"
 color = "#000000"
@@ -710,7 +720,7 @@ verifier = "novasama"
 
 [[chains]]
 name = "Equilibrium-parachain"
-title = "Equilibrium"
+title = "Equilibrium (PAUSED)"
 color = "#000000"
 icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/gradient/Equilibrium.svg"
 rpc_endpoints = [
@@ -912,4 +922,22 @@ color = "#000000"
 icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/gradient/Manta.svg"
 rpc_endpoints = ["wss://ws.manta.systems"]
 testnet = false
+verifier = "novasama"
+
+[[chains]]
+name = "Paseo Testnet"
+title = "paseo"
+color = "#000000"
+icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/gradient/Paseo_Testnet.svg"
+rpc_endpoints = ["wss://rpc.ibp.network/paseo"]
+testnet = true
+verifier = "novasama"
+
+[[chains]]
+name = "Rococo Testnet"
+title = "rococo"
+color = "#000000"
+icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/gradient/Rococo_Testnet.svg"
+rpc_endpoints = ["wss://rococo-rpc.polkadot.io/"]
+testnet = true
 verifier = "novasama"

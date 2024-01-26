@@ -17,6 +17,7 @@ pub(crate) struct ConfigTemplate {
     pub(crate) public_dir: PathBuf,
     pub(crate) verifiers: HashMap<String, Verifier>,
     pub(crate) chains: HashMap<String, ChainTemplate>,
+    pub(crate) inject_chains: Vec<InjectedChain>,
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug)]
@@ -24,6 +25,17 @@ pub(crate) struct ChainTemplate {
     pub(crate) name: String,
     pub(crate) color: String,
     pub(crate) verifier: Option<String>,
+}
+
+#[derive(Clone, Serialize, Deserialize, Debug)]
+pub(crate) struct InjectedChain {
+    pub(crate) name: String,
+    pub(crate) title: String,
+    pub(crate) color: String,
+    pub(crate) verifier: String,
+    pub(crate) icon: String,
+    pub(crate) rpc_endpoints: Vec<String>,
+    pub(crate) testnet: bool,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -196,6 +208,21 @@ pub(crate) fn update_chains_config(chains_opts: ChainsOpts) -> Result<()> {
                 );
             }
         }
+    }
+    for chain in config_template.inject_chains {
+        chains.push(Chain {
+            name: String::from(chain.title.clone()),
+            title: Some(chain.name.clone()),
+            color: chain.color,
+            icon: chain.icon.clone(),
+            rpc_endpoints: chain.rpc_endpoints,
+            github_release: None,
+            token_decimals: None,
+            token_unit: None,
+            testnet: Some(chain.testnet),
+            verifier: chain.verifier,
+            encryption: None,
+        });
     }
 
     let new_config = AppConfig {
