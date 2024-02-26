@@ -125,7 +125,7 @@ pub(crate) fn update_chains_config(chains_opts: ChainsOpts) -> Result<()> {
                     encryption: match &chain.options {
                         Some(options) => {
                             if options.contains(&String::from("ethereumBased")) {
-                                Some(String::from("ethereum"))
+                                Some(String::from("ecdsa"))
                             } else {
                                 None
                             }
@@ -156,7 +156,7 @@ pub(crate) fn update_chains_config(chains_opts: ChainsOpts) -> Result<()> {
                     encryption: match &chain.options {
                         Some(options) => {
                             if options.contains(&String::from("ethereumBased")) {
-                                Some(String::from("ethereum"))
+                                Some(String::from("ecdsa"))
                             } else {
                                 None
                             }
@@ -194,7 +194,7 @@ pub(crate) fn update_chains_config(chains_opts: ChainsOpts) -> Result<()> {
                     encryption: match &chain.options {
                         Some(options) => {
                             if options.contains(&String::from("ethereumBased")) {
-                                Some(String::from("ethereum"))
+                                Some(String::from("ecdsa"))
                             } else {
                                 None
                             }

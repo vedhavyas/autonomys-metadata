@@ -96,7 +96,7 @@ rpc_endpoints = [
 ]
 testnet = false
 verifier = "novasama"
-encryption = "ethereum"
+encryption = "ecdsa"
 
 [[chains]]
 name = "moonriver"
@@ -111,7 +111,7 @@ rpc_endpoints = [
 ]
 testnet = false
 verifier = "novasama"
-encryption = "ethereum"
+encryption = "ecdsa"
 
 [[chains]]
 name = "shiden"
@@ -752,7 +752,7 @@ icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/c
 rpc_endpoints = ["wss://parachain-rpc.darwinia.network"]
 testnet = false
 verifier = "novasama"
-encryption = "ethereum"
+encryption = "ecdsa"
 
 [[chains]]
 name = "Crab2"
@@ -766,7 +766,7 @@ rpc_endpoints = [
 ]
 testnet = false
 verifier = "novasama"
-encryption = "ethereum"
+encryption = "ecdsa"
 
 [[chains]]
 name = "frequency"
@@ -935,9 +935,8 @@ verifier = "novasama"
 [[chains]]
 name = "moonbase"
 title = "Moonbase Alpha"
-color = "#000000"
+color = "#F45B5B"
 icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/white/Moonriver.svg"
 rpc_endpoints = ["wss://moonbase-rpc.dwellir.com"]
 testnet = true
 verifier = "novasama"
-encryption = "ethereum"

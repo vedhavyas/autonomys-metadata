@@ -10,6 +10,8 @@ pub(crate) fn get_crypto(chain: &Chain) -> Encryption {
         Some(encryption) => {
             if encryption == "ethereum" {
                 Encryption::Ethereum
+            } else if encryption == "ecdsa" {
+                Encryption::Ecdsa
             } else {
                 Encryption::Sr25519
             }

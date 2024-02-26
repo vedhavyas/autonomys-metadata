@@ -115,11 +115,11 @@ where
                 private_key: signing_key,
             }
             .sign(content)?,
-            Encryption::Ethereum => EthereumSign {
+            Encryption::Ethereum | Encryption::Ecdsa => EthereumSign {
                 private_key: signing_key,
             }
             .sign(content)?,
-            _ => bail!("Unsupported signature. Only SR25519 and Ethereum are supported"),
+            _ => bail!("Unsupported signature. Only SR25519, Ethereum, ECDSA are supported"),
         };
         Make {
             goal: Goal::Qr,
