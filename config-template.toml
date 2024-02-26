@@ -368,10 +368,6 @@ qr_dir = "public/qr"
   name = "governance2"
   color = "#B3250A"
 
-  [chains."Moonbase Alpha"]
-  name = "moonbase"
-  color = "#F45B5B"
-
   [chains."Beresheet"]
   name = "Beresheet_v46"
   color = "#111111"
@@ -427,9 +423,9 @@ testnet = true
 verifier = "novasama"
 
 [[inject_chains]]
-name = "Moonbase Alpha"
+name = "moonbase"
 title = "Moonbase Alpha"
-color = "#000000"
+color = "#F45B5B"
 icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/white/Moonriver.svg"
 rpc_endpoints = ["wss://moonbase-rpc.dwellir.com"]
 testnet = true

@@ -933,7 +933,7 @@ testnet = true
 verifier = "novasama"
 
 [[chains]]
-name = "Moonbase Alpha"
+name = "moonbase"
 title = "Moonbase Alpha"
 color = "#000000"
 icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/white/Moonriver.svg"
