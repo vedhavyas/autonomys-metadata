@@ -36,6 +36,7 @@ pub(crate) struct InjectedChain {
     pub(crate) icon: String,
     pub(crate) rpc_endpoints: Vec<String>,
     pub(crate) testnet: bool,
+    pub(crate) encryption: Option<String>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -125,7 +126,7 @@ pub(crate) fn update_chains_config(chains_opts: ChainsOpts) -> Result<()> {
                     encryption: match &chain.options {
                         Some(options) => {
                             if options.contains(&String::from("ethereumBased")) {
-                                Some(String::from("ecdsa"))
+                                Some(String::from("ethereum"))
                             } else {
                                 None
                             }
@@ -156,7 +157,7 @@ pub(crate) fn update_chains_config(chains_opts: ChainsOpts) -> Result<()> {
                     encryption: match &chain.options {
                         Some(options) => {
                             if options.contains(&String::from("ethereumBased")) {
-                                Some(String::from("ecdsa"))
+                                Some(String::from("ethereum"))
                             } else {
                                 None
                             }
@@ -194,7 +195,7 @@ pub(crate) fn update_chains_config(chains_opts: ChainsOpts) -> Result<()> {
                     encryption: match &chain.options {
                         Some(options) => {
                             if options.contains(&String::from("ethereumBased")) {
-                                Some(String::from("ecdsa"))
+                                Some(String::from("ethereum"))
                             } else {
                                 None
                             }
@@ -221,7 +222,10 @@ pub(crate) fn update_chains_config(chains_opts: ChainsOpts) -> Result<()> {
             token_unit: None,
             testnet: Some(chain.testnet),
             verifier: chain.verifier,
-            encryption: None,
+            encryption: match &chain.encryption {
+                Some(encryption) => Some(String::from(encryption)),
+                None => None
+            }
         });
     }
 

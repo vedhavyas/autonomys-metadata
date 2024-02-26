@@ -429,5 +429,5 @@ color = "#F45B5B"
 icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/white/Moonriver.svg"
 rpc_endpoints = ["wss://moonbase-rpc.dwellir.com"]
 testnet = true
+encryption = "ethereum"
 verifier = "novasama"
-encryption = "ecdsa"
