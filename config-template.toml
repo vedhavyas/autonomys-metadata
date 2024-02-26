@@ -425,3 +425,12 @@ icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/c
 rpc_endpoints = ["wss://rococo-rpc.polkadot.io/"]
 testnet = true
 verifier = "novasama"
+
+[[inject_chains]]
+name = "Moonbase Alpha"
+title = "Moonbase Alpha"
+color = "#000000"
+icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/white/Moonriver.svg"
+rpc_endpoints = ["wss://moonbase-rpc.dwellir.com"]
+testnet = true
+verifier = "novasama"
