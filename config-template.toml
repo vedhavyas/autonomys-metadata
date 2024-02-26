@@ -430,3 +430,4 @@ icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/c
 rpc_endpoints = ["wss://moonbase-rpc.dwellir.com"]
 testnet = true
 verifier = "novasama"
+encryption = "ethereum"
