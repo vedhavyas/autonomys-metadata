@@ -1,13 +1,19 @@
 use std::{thread, time};
 
+use std::fs;
+use std::path::Path;
+
 use anyhow::{anyhow, bail, Result};
 use definitions::network_specs::NetworkSpecs;
 use generate_message::helpers::{meta_fetch, specs_agnostic, MetaFetched};
 use generate_message::parser::Token;
 use log::warn;
+use reqwest::Url;
+use serde::{Deserialize, Serialize};
 
 use crate::common::types::get_crypto;
-use crate::config::Chain;
+use crate::config::{AppConfig, Chain};
+use crate::export::{ExportData, ReactAssetPath};
 
 pub(crate) trait Fetcher {
     fn fetch_specs(&self, chain: &Chain) -> Result<NetworkSpecs>;
@@ -25,7 +31,7 @@ where
                 Ok(res) => return Ok(res),
                 Err(e) => warn!("Failed to fetch {}: {:?}", url, e),
             }
-            let interval_seconds = time::Duration::from_secs(1 * i);
+            let interval_seconds = time::Duration::from_secs(i);
             thread::sleep(interval_seconds);
         }
     }
@@ -91,4 +97,19 @@ impl Fetcher for ConfigRpcFetcher {
     fn fetch_metadata(&self, _chain: &Chain) -> Result<MetaFetched> {
         bail!("Not implemented!");
     }
+}
+
+#[derive(Serialize, Deserialize)]
+struct PkgJson {
+    homepage: String,
+}
+pub(crate) fn fetch_deployed_data(config: &AppConfig) -> Result<ExportData> {
+    let pkg_json = fs::read_to_string(Path::new("package.json"))?;
+    let pkg_json: PkgJson = serde_json::from_str(&pkg_json)?;
+
+    let data_file = ReactAssetPath::from_fs_path(&config.data_file, &config.public_dir)?;
+    let url = Url::parse(&pkg_json.homepage)?;
+    let url = url.join(&data_file.to_string())?;
+
+    Ok(reqwest::blocking::get(url)?.json::<ExportData>()?)
 }

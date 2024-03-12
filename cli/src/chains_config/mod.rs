@@ -37,14 +37,17 @@ pub(crate) struct InjectedChain {
     pub(crate) rpc_endpoints: Vec<String>,
     pub(crate) testnet: bool,
     pub(crate) encryption: Option<String>,
+    pub(crate) relay_chain: Option<String>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
+#[serde(rename_all = "camelCase")]
 pub(crate) struct ChainJSON {
     pub(crate) name: String,
     pub(crate) nodes: Vec<ChainNode>,
     pub(crate) icon: String,
     pub(crate) options: Option<Vec<String>>,
+    pub(crate) parent_id: Option<String>,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -63,6 +66,23 @@ pub(crate) fn update_chains_config(chains_opts: ChainsOpts) -> Result<()> {
     let template_path = Path::new("config-template.toml");
     let config_template_toml = fs::read_to_string(template_path)?;
     let config_template = toml::from_str::<ConfigTemplate>(config_template_toml.as_str())?;
+    let mut relay_chains: HashMap<String, String> = HashMap::new(); //TODO make a constant
+    relay_chains.insert(
+        String::from("91b171bb158e2d3848fa23a9f1c25182fb8e20313b2c1eb49219da7a70ce90c3"),
+        String::from("polkadot"),
+    );
+    relay_chains.insert(
+        String::from("b0a8d493285c2df73290dfb7e61f870f17b41801197a149ca93654499ea3dafe"),
+        String::from("kusama"),
+    );
+    relay_chains.insert(
+        String::from("6408de7737c59c238890533af25896a2c20608d8b380bb01029acb392781063e"),
+        String::from("rococo"),
+    );
+    relay_chains.insert(
+        String::from("e143f23803ac50e8f6f8e62695d1ce9e4e1d68aa36c1cd2cfd15340213f3423e"),
+        String::from("westend"),
+    );
 
     let chain_params = match chains_opts.env.as_str() {
         "dev" => (
@@ -103,6 +123,7 @@ pub(crate) fn update_chains_config(chains_opts: ChainsOpts) -> Result<()> {
         {
             continue;
         }
+
         let chain_template = config_template.chains.get(&chain.name);
         match chain_template {
             Some(chain_template) => {
@@ -133,6 +154,9 @@ pub(crate) fn update_chains_config(chains_opts: ChainsOpts) -> Result<()> {
                         }
                         None => None,
                     },
+                    relay_chain: chain
+                        .parent_id
+                        .map(|parent_id| String::from(relay_chains.get(&parent_id).unwrap())),
                 });
             }
             None => {
@@ -164,6 +188,10 @@ pub(crate) fn update_chains_config(chains_opts: ChainsOpts) -> Result<()> {
                         }
                         None => None,
                     },
+                    relay_chain: chain
+                        .parent_id
+                        .as_ref()
+                        .map(|parent_id| String::from(relay_chains.get(parent_id).unwrap())),
                 };
                 let fetcher = ConfigRpcFetcher;
                 let fetch_result = fetcher.fetch_specs(&dummy_chain);
@@ -202,6 +230,10 @@ pub(crate) fn update_chains_config(chains_opts: ChainsOpts) -> Result<()> {
                         }
                         None => None,
                     },
+                    relay_chain: chain
+                        .parent_id
+                        .as_ref()
+                        .map(|parent_id| String::from(relay_chains.get(parent_id).unwrap())),
                 });
                 warn!(
                     "Add chain {} in config-template.toml in order to speed up next chain update",
@@ -212,7 +244,7 @@ pub(crate) fn update_chains_config(chains_opts: ChainsOpts) -> Result<()> {
     }
     for chain in config_template.inject_chains {
         chains.push(Chain {
-            name: String::from(chain.name.clone()),
+            name: chain.name.clone(),
             title: Some(chain.title.clone()),
             color: chain.color,
             icon: chain.icon.clone(),
@@ -222,10 +254,8 @@ pub(crate) fn update_chains_config(chains_opts: ChainsOpts) -> Result<()> {
             token_unit: None,
             testnet: Some(chain.testnet),
             verifier: chain.verifier,
-            encryption: match &chain.encryption {
-                Some(encryption) => Some(String::from(encryption)),
-                None => None
-            }
+            encryption: chain.encryption.as_ref().map(String::from),
+            relay_chain: chain.relay_chain.clone(),
         });
     }
 
