@@ -74,11 +74,6 @@ jobs:
           exit $exit_code
         shell: bash {0}
 
-      - name: ⚙ Run cleaner
-        if: ${{ steps.collect.outputs.chainsSkipped == 'false' }}
-        id: cleaner
-        run: cargo run --release clean
-
       - name: 📌 Commit changes if PR exists
         if: ${{ steps.checkout-pr.outputs.switched == 'true' }}
         uses: ./.github/workflows/commit-changes
