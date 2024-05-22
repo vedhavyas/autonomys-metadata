@@ -79,6 +79,19 @@ verifier = "novasama"
 relay_chain = "kusama"
 
 [[chains]]
+name = "people-kusama"
+title = "Kusama People"
+color = "#000000"
+icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/gradient/Kusama_People.svg"
+rpc_endpoints = [
+    "wss://kusama-people-rpc.polkadot.io",
+    "wss://ksm-rpc.stakeworld.io/people",
+]
+testnet = false
+verifier = "novasama"
+relay_chain = "kusama"
+
+[[chains]]
 name = "karura"
 title = "Karura"
 color = "#ff4c3b"
@@ -769,7 +782,7 @@ title = "Ajuna"
 color = "#000000"
 icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/gradient/Ajuna.svg"
 rpc_endpoints = [
-    "wss://rpc-parachain.ajuna.network",
+    "wss://rpc-para.ajuna.network",
     "wss://ajuna.public.curie.radiumblock.co/ws",
 ]
 testnet = false
@@ -793,7 +806,7 @@ name = "Darwinia2"
 title = "Darwinia"
 color = "#FF0083"
 icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/gradient/Darwinia.svg"
-rpc_endpoints = ["wss://parachain-rpc.darwinia.network"]
+rpc_endpoints = ["wss://rpc.darwinia.network"]
 testnet = false
 verifier = "novasama"
 encryption = "ethereum"
@@ -1021,6 +1034,19 @@ title = "Acurast Canary"
 color = "#000000"
 icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/gradient/Acurast_Canary.svg"
 rpc_endpoints = ["wss://acurast-canarynet-ws.prod.gke.papers.tech"]
+testnet = false
+verifier = "novasama"
+relay_chain = "kusama"
+
+[[chains]]
+name = "kreivo-parachain"
+title = "Kreivo"
+color = "#000000"
+icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/gradient/Kreivo.svg"
+rpc_endpoints = [
+    "wss://kreivo.io/",
+    "wss://kreivo.kippu.rocks/",
+]
 testnet = false
 verifier = "novasama"
 relay_chain = "kusama"
