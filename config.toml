@@ -105,7 +105,7 @@ relay_chain = "kusama"
 name = "moonbeam"
 title = "Moonbeam"
 color = "#53cbc9"
-icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/gradient/Moonbeam.svg"
+icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/gradient/moonbeam.svg"
 rpc_endpoints = [
     "wss://wss.api.moonbeam.network",
     "wss://moonbeam.public.curie.radiumblock.co/ws",
@@ -121,7 +121,7 @@ relay_chain = "polkadot"
 name = "moonriver"
 title = "Moonriver"
 color = "#0E132E"
-icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/gradient/Moonriver.svg"
+icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/gradient/moonriver.svg"
 rpc_endpoints = [
     "wss://wss.api.moonriver.moonbeam.network",
     "wss://moonriver.public.blastapi.io",
@@ -472,12 +472,14 @@ relay_chain = "polkadot"
 
 [[chains]]
 name = "hydradx"
-title = "HydraDX"
-color = "#f653a2"
-icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/gradient/HydraDX.svg"
+title = "Hydration"
+color = "#000000"
+icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/gradient/Hydration.svg"
 rpc_endpoints = [
     "wss://hydradx-rpc.dwellir.com",
     "wss://rpc.hydradx.cloud",
+    "wss://hydradx.paras.ibp.network",
+    "wss://hydradx.paras.dotters.network",
 ]
 testnet = false
 verifier = "novasama"
@@ -1029,16 +1031,6 @@ encryption = "ethereum"
 relay_chain = "polkadot"
 
 [[chains]]
-name = "acurast-parachain"
-title = "Acurast Canary"
-color = "#000000"
-icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/gradient/Acurast_Canary.svg"
-rpc_endpoints = ["wss://acurast-canarynet-ws.prod.gke.papers.tech"]
-testnet = false
-verifier = "novasama"
-relay_chain = "kusama"
-
-[[chains]]
 name = "kreivo-parachain"
 title = "Kreivo"
 color = "#000000"
@@ -1050,6 +1042,25 @@ rpc_endpoints = [
 testnet = false
 verifier = "novasama"
 relay_chain = "kusama"
+
+[[chains]]
+name = "nexus"
+title = "Hyperbridge Nexus"
+color = "#000000"
+icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/gradient/Hyperbridge.svg"
+rpc_endpoints = ["wss://hyperbridge-nexus-rpc.blockops.network"]
+testnet = false
+verifier = "novasama"
+relay_chain = "polkadot"
+
+[[chains]]
+name = "node"
+title = "Cere"
+color = "#000000"
+icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/gradient/Cere.svg"
+rpc_endpoints = ["wss://rpc.mainnet.cere.network/ws"]
+testnet = false
+verifier = "novasama"
 
 [[chains]]
 name = "paseo"
