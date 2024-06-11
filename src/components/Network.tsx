@@ -31,7 +31,7 @@ export const Network = ({ spec }: { spec: ChainSpec }) => {
 
   const vaultLink = (
     <a
-      href="https://parity.io/signer/"
+      href="https://vault.novasama.io/"
       className="font-bold"
       target="_blank"
       rel="noreferrer"
