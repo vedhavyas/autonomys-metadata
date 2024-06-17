@@ -56,10 +56,11 @@ pub(crate) struct ChainNode {
     pub(crate) url: String,
 }
 
-const EXCLUDE_CHAINS: [&str; 3] = [
+const EXCLUDE_CHAINS: [&str; 4] = [
     "Arctic Relay Testnet",
     "Aleph Zero Testnet", //TODO name matches with mainnet and will override it
     "Hashed Network",     // Specs(Base58PrefixMismatch { specs: 9072, meta: 42 })
+    "Cere", //TODO spece name is `node` that is the same for the Polkadex
 ];
 
 pub(crate) fn update_chains_config(chains_opts: ChainsOpts) -> Result<()> {

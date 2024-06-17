@@ -1054,15 +1054,6 @@ verifier = "novasama"
 relay_chain = "polkadot"
 
 [[chains]]
-name = "node"
-title = "Cere"
-color = "#000000"
-icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/gradient/Cere.svg"
-rpc_endpoints = ["wss://rpc.mainnet.cere.network/ws"]
-testnet = false
-verifier = "novasama"
-
-[[chains]]
 name = "paseo"
 title = "Paseo Testnet"
 color = "#000000"
