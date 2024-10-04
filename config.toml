@@ -30,6 +30,7 @@ rpc_endpoints = [
 testnet = false
 verifier = "parity"
 
+[[chains]]
 name = "westend"
 title = "Westend"
 color = "#f27230"
