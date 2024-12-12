@@ -1099,7 +1099,7 @@ testnet = false
 verifier = "novasama"
 
 [[chains]]
-name = "node"
+name = "DeepBrainChain"
 title = "DeepBrain"
 color = "#000000"
 icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/gradient/DeepBrain.svg"
