@@ -1140,9 +1140,14 @@ name = "paseo"
 title = "Paseo Testnet"
 color = "#000000"
 icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/gradient/Paseo_Testnet.svg"
-rpc_endpoints = ["wss://paseo.rpc.amforc.com"]
+rpc_endpoints = ["wss://paseo.rpc.amforc.com", "wss://paseo.dotters.network"]
 testnet = true
 verifier = "novasama"
+
+[chains.github_release]
+owner = "paseo-network"
+repo = "runtimes"
+genesis_hash = "0x77afd6190f1554ad45fd0d31aee62aacc33c6db0ea801129acb813f913e0764f"
 
 [[chains]]
 name = "rococo"
