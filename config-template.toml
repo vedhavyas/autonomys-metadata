@@ -405,11 +405,26 @@ name = "collectives"
 color = '#e6777a'
 
 [[inject_chains]]
+name = "westend"
+title = "Westend"
+color = "#f27230"
+icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/gradient/Westend_Testnet.svg"
+rpc_endpoints = [
+  "wss://westend-rpc.dwellir.com",
+  "wss://rpc.ibp.network/westend",
+  "wss://westend.dotters.network",
+  "wss://westend.public.curie.radiumblock.co/ws",
+  "wss://westend.api.onfinality.io/public-ws",
+]
+testnet = true
+verifier = "parity"
+
+[[inject_chains]]
 name = "paseo"
 title = "Paseo Testnet"
 color = "#000000"
 icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/gradient/Paseo_Testnet.svg"
-rpc_endpoints = ["wss://paseo.rpc.amforc.com"]
+rpc_endpoints = ["wss://paseo.rpc.amforc.com", "wss://paseo.dotters.network"]
 testnet = true
 verifier = "novasama"
 
