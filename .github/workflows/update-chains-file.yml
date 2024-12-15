@@ -11,6 +11,8 @@ on:
         options:
           - dev
           - prod
+  schedule:
+    - cron: '0 10 * * 0'
 
 permissions:
   pull-requests: write
