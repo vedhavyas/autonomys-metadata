@@ -147,7 +147,7 @@ Additionally, please make sure to install `clang` package or its derivative that
 If you're getting `dyld: Library not loaded: @rpath/libclang.dylib`:
 OS can't find libclang.dylib dynamic library because it resides in a non-standard path, set up the DYLD_FALLBACK_LIBRARY_PATH environment variable to point to the path where libclang.dylib can be found, e.g. for XCode:
 
-`export DYLD_FALLBACK_LIBRARY_PATH="$(xcode-select --print-path)/Toolchains/XcodeDefault.xctoolchain/usr/lib/"`
+`export DYLD_FALLBACK_LIBRARY_PATH="$(xcode-select --print-path)/usr/lib/"`
 
 
 ### Frontend
