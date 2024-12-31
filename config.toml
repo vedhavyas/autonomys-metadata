@@ -572,6 +572,8 @@ title = "Bifrost Polkadot"
 color = "#5a25f0"
 icon = "https://raw.githubusercontent.com/novasamatech/nova-utils/master/icons/chains/gradient/Bifrost_Polkadot.svg"
 rpc_endpoints = [
+    "wss://hk.p.bifrost-rpc.liebi.com/ws",
+    "wss://eu.bifrost-polkadot-rpc.liebi.com/ws",
     "wss://bifrost-polkadot.ibp.network",
     "wss://bifrost-polkadot.dotters.network",
     "wss://hk.p.bifrost-rpc.liebi.com/ws",
