@@ -595,7 +595,6 @@ rpc_endpoints = [
     "wss://eu.bifrost-polkadot-rpc.liebi.com/ws",
     "wss://bifrost-polkadot.ibp.network",
     "wss://bifrost-polkadot.dotters.network",
-    "wss://hk.p.bifrost-rpc.liebi.com/ws",
 ]
 testnet = false
 verifier = "novasama"
