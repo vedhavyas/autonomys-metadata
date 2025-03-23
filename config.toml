@@ -10,7 +10,7 @@ public_key = "66d2f79b2ec95e9ebe4511587ba104ed797756a4fb999bcdad3ccfd92ef96f61"
 name = "Autonomys"
 title = "Autonomys"
 color = "#5870B3"
-icon = ""
+icon = "https://raw.githubusercontent.com/vedhavyas/metadata-portal/refs/heads/master/src/assets/icons/autonomys.svg"
 rpc_endpoints = [
     "wss://rpc.mainnet.subspace.foundation/ws",
     "wss://rpc-0.mainnet.autonomys.xyz/ws"
@@ -22,7 +22,7 @@ verifier = "vedhavyas"
 name = "Autonomys Taurus"
 title = "Autonomys Taurus"
 color = "#5870B3"
-icon = ""
+icon = "https://raw.githubusercontent.com/vedhavyas/metadata-portal/refs/heads/master/src/assets/icons/autonomys.svg"
 rpc_endpoints = [
     "wss://rpc-0.taurus.subspace.network/ws",
     "wss://rpc-1.taurus.subspace.network/ws"
@@ -34,7 +34,7 @@ verifier = "vedhavyas"
 name = "Autonomys Taurus EVM"
 title = "Autonomys Taurus EVM"
 color = "#5870B3"
-icon = ""
+icon = "https://raw.githubusercontent.com/vedhavyas/metadata-portal/refs/heads/master/src/assets/icons/autonomys.svg"
 rpc_endpoints = [
     "wss://auto-evm.taurus.autonomys.xyz/ws"
 ]
