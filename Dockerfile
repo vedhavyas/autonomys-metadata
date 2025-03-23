@@ -18,4 +18,10 @@ RUN apt-get update \
 
 WORKDIR /app
 
-ENTRYPOINT ["cargo", "run", "--release"]
+COPY . .
+
+RUN cargo build --release
+
+RUN mv target/release/metadata-cli metadata-cli
+
+ENTRYPOINT ["/app/metadata-cli"]

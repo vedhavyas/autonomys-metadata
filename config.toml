@@ -7,7 +7,7 @@ name = "Vedhavyas"
 public_key = "66d2f79b2ec95e9ebe4511587ba104ed797756a4fb999bcdad3ccfd92ef96f61"
 
 [[chains]]
-name = "Autonomys"
+name = "Subspace"
 title = "Autonomys"
 color = "#5870B3"
 icon = "https://raw.githubusercontent.com/vedhavyas/metadata-portal/refs/heads/master/src/assets/icons/autonomys.svg"
@@ -19,7 +19,7 @@ testnet = false
 verifier = "vedhavyas"
 
 [[chains]]
-name = "Autonomys Taurus"
+name = "Subspace"
 title = "Autonomys Taurus"
 color = "#5870B3"
 icon = "https://raw.githubusercontent.com/vedhavyas/metadata-portal/refs/heads/master/src/assets/icons/autonomys.svg"
@@ -31,7 +31,7 @@ testnet = true
 verifier = "vedhavyas"
 
 [[chains]]
-name = "Autonomys Taurus EVM"
+name = "subspace-evm-domain"
 title = "Autonomys Taurus EVM"
 color = "#5870B3"
 icon = "https://raw.githubusercontent.com/vedhavyas/metadata-portal/refs/heads/master/src/assets/icons/autonomys.svg"
@@ -40,3 +40,4 @@ rpc_endpoints = [
 ]
 testnet = true
 verifier = "vedhavyas"
+encryption = "ethereum"
