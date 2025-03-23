@@ -7,7 +7,7 @@ on:
 
 env:
   NOTIFY_MATRIX: false
-  NOTIFY_TELEGRAM: true
+  NOTIFY_TELEGRAM: false
   GITHUB_WORKFLOW_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
 
 jobs:
