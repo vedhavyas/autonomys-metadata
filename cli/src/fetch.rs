@@ -53,25 +53,11 @@ impl Fetcher for RpcFetcher {
             specs_agnostic(url, get_crypto(chain), optional_token_override, None)
         })
         .map_err(|e| anyhow!("{:?}", e))?;
-        if specs.name.to_lowercase() != chain.name {
-            bail!(
-                "Network name mismatch. Expected {}, got {}. Please fix it in `config.toml`",
-                chain.name,
-                specs.name
-            )
-        }
         Ok(specs)
     }
 
     fn fetch_metadata(&self, chain: &Chain) -> Result<MetaFetched> {
         let meta = call_urls(&chain.rpc_endpoints, meta_fetch).map_err(|e| anyhow!("{:?}", e))?;
-        if meta.meta_values.name.to_lowercase() != chain.name {
-            bail!(
-                "Network name mismatch. Expected {}, got {}. Please fix it in `config.toml`",
-                chain.name,
-                meta.meta_values.name
-            )
-        }
         Ok(meta)
     }
 }

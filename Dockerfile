@@ -22,6 +22,4 @@ COPY . .
 
 RUN cargo build --release
 
-RUN mv target/release/metadata-cli metadata-cli
-
-ENTRYPOINT ["/app/metadata-cli"]
+ENTRYPOINT ["target/release/metadata-cli"]
