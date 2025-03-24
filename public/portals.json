@@ -1,14 +1,10 @@
 {
-  "novasama": {
-    "name": "Novasama",
-    "url": "https://metadata.novasama.io/"
+  "vedhavyas": {
+    "name": "Vedhavyas",
+    "url": "https://vedhavyas.com/metadata-portal"
   },
   "parity": {
     "name": "Parity",
     "url": "https://metadata.parity.io/"
-  },
-  "dentnet": {
-    "name": "DENTNet",
-    "url": "https://main.dentnet.io/vault/"
   }
 }
