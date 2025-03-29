@@ -2,9 +2,8 @@
 pub(crate) type ChainPortalId = String;
 pub(crate) type MetaVersion = u32;
 
-use definitions::crypto::Encryption;
-
 use crate::config::Chain;
+use definitions::crypto::Encryption;
 
 pub(crate) fn get_crypto(chain: &Chain) -> Encryption {
     match &chain.encryption {

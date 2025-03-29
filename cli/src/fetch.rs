@@ -1,24 +1,22 @@
-use std::{thread, time};
-
-use std::fs;
-use std::path::Path;
-
-use anyhow::{anyhow, bail, Result};
-use definitions::network_specs::NetworkSpecs;
-use generate_message::helpers::{meta_fetch, specs_agnostic, MetaFetched};
-use generate_message::parser::Token;
-use log::warn;
-use reqwest::Url;
-use serde::{Deserialize, Serialize};
-
 use crate::common::types::get_crypto;
 use crate::config::{AppConfig, Chain};
 use crate::export::{ExportData, ReactAssetPath};
-
-pub(crate) trait Fetcher {
-    fn fetch_specs(&self, chain: &Chain) -> Result<NetworkSpecs>;
-    fn fetch_metadata(&self, chain: &Chain) -> Result<MetaFetched>;
-}
+use anyhow::{anyhow, bail, Result};
+use definitions::metadata::runtime_metadata_from_slice;
+use definitions::network_specs::NetworkSpecs;
+use frame_metadata::v14::META_RESERVED;
+use frame_metadata::{RuntimeMetadata, RuntimeMetadataPrefixed};
+use generate_message::helpers::{meta_fetch, specs_agnostic, MetaFetched};
+use generate_message::parser::Token;
+use log::{info, warn};
+use reqwest::Url;
+use serde::{Deserialize, Serialize};
+use sp_core::{Decode, Encode};
+use sp_runtime::RuntimeString;
+use sp_version::RuntimeVersion;
+use std::fs;
+use std::path::Path;
+use std::{thread, time};
 
 // try to call all urls unless successful
 fn call_urls<F, T>(urls: &[String], f: F) -> Result<T>
@@ -40,8 +38,8 @@ where
 
 pub(crate) struct RpcFetcher;
 
-impl Fetcher for RpcFetcher {
-    fn fetch_specs(&self, chain: &Chain) -> Result<NetworkSpecs> {
+impl RpcFetcher {
+    pub fn fetch_specs(&self, chain: &Chain) -> Result<NetworkSpecs> {
         let specs = call_urls(&chain.rpc_endpoints, |url| {
             let optional_token_override = chain.token_decimals.zip(chain.token_unit.as_ref()).map(
                 |(token_decimals, token_unit)| Token {
@@ -50,38 +48,45 @@ impl Fetcher for RpcFetcher {
                 },
             );
 
-            specs_agnostic(url, get_crypto(chain), optional_token_override, None)
+            let mut specs = specs_agnostic(
+                url,
+                get_crypto(chain),
+                optional_token_override,
+                Some(chain.name.clone()),
+            )?;
+
+            if chain.empty_path {
+                specs.path_id = "".into();
+            }
+
+            if chain.icon != specs.logo {
+                specs.logo = chain.icon.clone();
+            }
+
+            if specs.name != chain.name.clone() {
+                specs.name = chain.name.clone();
+                specs.title = to_title_case(chain.name.clone());
+            }
+
+            specs.color = chain.color.clone();
+            Ok(specs)
         })
         .map_err(|e| anyhow!("{:?}", e))?;
         Ok(specs)
     }
 
-    fn fetch_metadata(&self, chain: &Chain) -> Result<MetaFetched> {
-        let meta = call_urls(&chain.rpc_endpoints, meta_fetch).map_err(|e| anyhow!("{:?}", e))?;
-        Ok(meta)
-    }
-}
-
-pub(crate) struct ConfigRpcFetcher;
-
-impl Fetcher for ConfigRpcFetcher {
-    fn fetch_specs(&self, chain: &Chain) -> Result<NetworkSpecs> {
-        let specs = call_urls(&chain.rpc_endpoints, |url| {
-            let optional_token_override = chain.token_decimals.zip(chain.token_unit.as_ref()).map(
-                |(token_decimals, token_unit)| Token {
-                    decimals: token_decimals,
-                    unit: token_unit.to_string(),
-                },
-            );
-
-            specs_agnostic(url, get_crypto(chain), optional_token_override, None)
-        })
-        .map_err(|e| anyhow!("{:?}", e))?;
-        Ok(specs)
-    }
-
-    fn fetch_metadata(&self, _chain: &Chain) -> Result<MetaFetched> {
-        bail!("Not implemented!");
+    pub fn fetch_metadata(&self, chain: &Chain) -> Result<MetaFetched> {
+        let mut meta =
+            call_urls(&chain.rpc_endpoints, meta_fetch).map_err(|e| anyhow!("{:?}", e))?;
+        if meta.meta_values.name != chain.name {
+            meta.meta_values.name = chain.name.clone();
+            let updated_meta =
+                override_spec_name(meta.meta_values.meta.as_slice(), chain.name.clone());
+            meta.meta_values.meta = updated_meta;
+            Ok(meta)
+        } else {
+            Ok(meta)
+        }
     }
 }
 
@@ -98,4 +103,46 @@ pub(crate) fn fetch_deployed_data(config: &AppConfig) -> Result<ExportData> {
     let url = url.join(&data_file.to_string())?;
 
     Ok(reqwest::blocking::get(url)?.json::<ExportData>()?)
+}
+
+fn override_spec_name(meta: &[u8], spec_name: String) -> Vec<u8> {
+    let runtime_metadata = runtime_metadata_from_slice(meta).unwrap();
+    let runtime_metadata = match runtime_metadata {
+        RuntimeMetadata::V14(mut metadata_v14) => {
+            for x in metadata_v14.pallets.iter_mut() {
+                if x.name == "System" {
+                    for y in x.constants.iter_mut() {
+                        if y.name == "Version" {
+                            let mut runtime_version =
+                                RuntimeVersion::decode(&mut y.value.as_slice()).unwrap();
+                            if runtime_version.spec_name != RuntimeString::Owned(spec_name.clone())
+                            {
+                                info!(
+                                    "⚙️  Overriding spec name from {} to {}",
+                                    runtime_version.spec_name, spec_name
+                                );
+                                runtime_version.spec_name = RuntimeString::Owned(spec_name.clone());
+                                runtime_version.impl_name = RuntimeString::Owned(spec_name.clone());
+                            }
+                            y.value = runtime_version.encode();
+                            break;
+                        }
+                    }
+                }
+            }
+
+            RuntimeMetadata::V14(metadata_v14)
+        }
+        _ => runtime_metadata,
+    };
+
+    RuntimeMetadataPrefixed(META_RESERVED, runtime_metadata).encode()
+}
+
+fn to_title_case(s: String) -> String {
+    let mut c = s.chars();
+    match c.next() {
+        None => String::new(),
+        Some(f) => f.to_uppercase().collect::<String>() + c.as_str(),
+    }
 }

@@ -1,8 +1,5 @@
-use std::path::PathBuf;
-
 use clap::{Parser, Subcommand};
-
-use crate::updater::source::UpdateSource;
+use std::path::PathBuf;
 
 #[derive(Parser)]
 pub(crate) struct Opts {
@@ -23,30 +20,12 @@ pub(crate) enum SubCommand {
     /// Generate json data file for frontend
     Collect,
 
-    /// Sign unsigned QR codes.
-    Sign,
-
     /// Check updates
     Update(UpdateOpts),
-
-    /// Verify signed QR codes
-    Verify,
-
-    /// Check if deployment is up to date
-    CheckDeployment,
-
-    /// Check if the config.toml should be updated
-    UpdateChainConfig(ChainsOpts),
 }
 
 #[derive(Parser)]
 pub(crate) struct UpdateOpts {
-    #[arg(short = 's', long, default_value = "node")]
-    pub(crate) source: UpdateSource,
-
-    #[clap(long)]
-    pub(crate) sign: bool,
-
     #[clap(long, default_value = "")]
     pub(crate) signing_key: String,
 }

@@ -1,11 +1,9 @@
-use std::collections::HashMap;
-use std::path::{Path, PathBuf};
-use std::{fmt, fs};
-
-use anyhow::bail;
 use log::debug;
 use serde::de::{self, value, SeqAccess, Visitor};
 use serde::{Deserialize, Deserializer, Serialize};
+use std::collections::HashMap;
+use std::path::{Path, PathBuf};
+use std::{fmt, fs};
 
 fn case_insensitive<'de, D>(deserializer: D) -> Result<String, D::Error>
 where
@@ -96,16 +94,6 @@ impl AppConfig {
         config.qr_dir = root.join(config.qr_dir);
         Ok(config)
     }
-
-    pub(crate) fn save(&self, path: impl AsRef<Path>) -> anyhow::Result<()> {
-        let write_result = fs::write(&path, toml::to_string_pretty(self).unwrap().as_bytes());
-        match write_result {
-            Ok(_) => println!("File {} was updated!", path.as_ref().to_str().unwrap()),
-            Err(e) => bail!("Error saving config.toml! {}", e),
-        }
-
-        Ok(())
-    }
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug)]
@@ -127,17 +115,9 @@ impl Default for Verifier {
 }
 
 #[derive(Clone, Serialize, Deserialize, Debug)]
-pub(crate) struct GithubRepo {
-    pub(crate) owner: String,
-    pub(crate) repo: String,
-    pub(crate) genesis_hash: String,
-}
-
-#[derive(Clone, Serialize, Deserialize, Debug)]
 pub(crate) struct Chain {
     #[serde(deserialize_with = "case_insensitive")]
     pub(crate) name: String,
-    pub(crate) title: Option<String>,
     #[serde(default = "color_default")]
     pub(crate) color: String,
     pub(crate) icon: String,
@@ -145,11 +125,10 @@ pub(crate) struct Chain {
     pub(crate) rpc_endpoints: Vec<String>,
     pub(crate) token_unit: Option<String>,
     pub(crate) token_decimals: Option<u8>,
-    pub(crate) github_release: Option<GithubRepo>,
     pub(crate) testnet: Option<bool>,
     pub(crate) verifier: String,
+    pub(crate) empty_path: bool,
     pub(crate) encryption: Option<String>,
-    pub(crate) relay_chain: Option<String>,
 }
 
 fn color_default() -> String {
@@ -158,10 +137,7 @@ fn color_default() -> String {
 
 impl Chain {
     pub(crate) fn portal_id(&self) -> String {
-        match &self.relay_chain {
-            Some(relay) => format!("{relay}-{}", self.name),
-            None => self.name.to_string(),
-        }
+        self.name.to_string()
     }
 }
 
@@ -170,16 +146,14 @@ impl Default for Chain {
     fn default() -> Self {
         Self {
             name: "polkadot".to_string(),
-            title: None,
             color: color_default(),
             icon: "Polkadot.svg".to_string(),
             rpc_endpoints: vec!["wss://example.com".to_string()],
             token_unit: None,
             token_decimals: None,
-            github_release: None,
-            relay_chain: None,
             testnet: Some(false),
             verifier: String::from("novasama"),
+            empty_path: false,
             encryption: None,
         }
     }
