@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "start": "npx serve@latest out",
     "predeploy": "npm run build",
     "deploy": "echo > out/.nojekyll && gh-pages -d out --branch=gh-pages --dotfiles",
     "lint": "next lint"

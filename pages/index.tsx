@@ -50,7 +50,7 @@ const HomePage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("/data.json");
+      const response = await fetch(`${process.env.NODE_ENV === 'production' ? '/autonomys-metadata' : ''}/data.json`);
       const jsonData: DataMap = await response.json();
       setData(jsonData);
       setActiveButton(Object.values(jsonData)[0].title);

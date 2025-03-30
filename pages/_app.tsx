@@ -7,7 +7,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png" />
+          <link rel="icon" type="image/png" sizes="16x16" href={`${process.env.NODE_ENV === 'production' ? '/autonomys-metadata' : ''}/favicon.png`} />
       </Head>
       <Component {...pageProps} />
     </>

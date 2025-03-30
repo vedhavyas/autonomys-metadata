@@ -41,7 +41,7 @@ const DisplayQr: React.FC<ImagesDisplayProps> = ({ latestMetadata, specsQrPath, 
       </ButtonGroup>
       <Card className="m-2 p-0">
         <Card.Body className="text-center">
-          <Image src={activeImage} fluid className="mx-auto d-block" alt={`${activeImage} logo`} />
+          <Image src={`${process.env.NODE_ENV === 'production' ? '/autonomys-metadata/' : ''}${activeImage}`} fluid className="mx-auto d-block" alt={`${activeImage}`} />
         </Card.Body>
       </Card>
     </div>
