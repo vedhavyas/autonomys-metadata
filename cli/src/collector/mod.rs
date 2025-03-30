@@ -1,15 +1,13 @@
 pub(crate) mod export;
 mod file;
 
-use std::process::exit;
-
-use log::warn;
-
 use crate::collector::export::export_specs;
 use crate::collector::file::save_to_file;
 use crate::config::AppConfig;
 use crate::export::ExportData;
 use crate::fetch::RpcFetcher;
+use log::warn;
+use std::process::exit;
 
 pub(crate) fn collect(config: AppConfig) -> anyhow::Result<()> {
     let specs: ExportData = export_specs(&config, RpcFetcher)?;

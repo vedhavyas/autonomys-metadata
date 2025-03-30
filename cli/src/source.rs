@@ -1,11 +1,10 @@
+use anyhow::Result;
+use serde::{Deserialize, Serialize};
+use sp_core::H256;
 use std::fs;
 use std::fs::File;
 use std::io::BufWriter;
 use std::path::Path;
-
-use anyhow::Result;
-use serde::{Deserialize, Serialize};
-use sp_core::H256;
 use tempfile::tempdir;
 
 const SOURCE: &str = "Source";
@@ -13,7 +12,6 @@ const SOURCE: &str = "Source";
 #[derive(Serialize, Deserialize, PartialEq, Clone, Debug)]
 #[serde(tag = "type")]
 pub(crate) enum Source {
-    Wasm { github_repo: String, hash: String },
     Rpc { block: H256 },
 }
 

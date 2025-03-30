@@ -1,11 +1,9 @@
-use std::collections::HashSet;
-
-use anyhow::Context;
-
 use crate::common::path::QrPath;
 use crate::export::read_export_file;
 use crate::qrs::{metadata_files, spec_files};
 use crate::AppConfig;
+use anyhow::Context;
+use std::collections::HashSet;
 
 pub(crate) fn files_to_keep(config: &AppConfig) -> anyhow::Result<HashSet<QrPath>> {
     let mut keep_files: HashSet<QrPath> = HashSet::new();

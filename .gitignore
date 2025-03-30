@@ -35,3 +35,6 @@ target
 # symlink QRs
 public/qr/*_latest.apng
 public/qr_dev/*_latest.apng
+
+# next js
+.next

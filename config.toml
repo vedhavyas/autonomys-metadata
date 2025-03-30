@@ -8,7 +8,7 @@ public_key = "66d2f79b2ec95e9ebe4511587ba104ed797756a4fb999bcdad3ccfd92ef96f61"
 
 [[chains]]
 name = "Autonomys"
-title = "Autonomys"
+empty_path = true
 color = "#5870B3"
 icon = "https://raw.githubusercontent.com/vedhavyas/metadata-portal/refs/heads/master/src/assets/icons/autonomys.svg"
 rpc_endpoints = [
@@ -20,7 +20,7 @@ verifier = "vedhavyas"
 
 [[chains]]
 name = "Taurus"
-title = "Taurus"
+empty_path = true
 color = "#5870B3"
 icon = "https://raw.githubusercontent.com/vedhavyas/metadata-portal/refs/heads/master/src/assets/icons/autonomys.svg"
 rpc_endpoints = [
@@ -31,8 +31,8 @@ testnet = true
 verifier = "vedhavyas"
 
 [[chains]]
-name = "TaurusEVM"
-title = "Taurus EVM"
+name = "Taurus EVM Domain 0"
+empty_path = true
 color = "#5870B3"
 icon = "https://raw.githubusercontent.com/vedhavyas/metadata-portal/refs/heads/master/src/assets/icons/autonomys.svg"
 rpc_endpoints = [

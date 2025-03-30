@@ -1,11 +1,9 @@
+use crate::file::files_to_keep;
+use crate::AppConfig;
+use anyhow::Context;
 use std::collections::HashSet;
 use std::fs;
 use std::path::PathBuf;
-
-use anyhow::Context;
-
-use crate::file::files_to_keep;
-use crate::AppConfig;
 
 pub(crate) fn files_to_remove(config: &AppConfig) -> anyhow::Result<Vec<PathBuf>> {
     let all_files: HashSet<PathBuf> = fs::read_dir(&config.qr_dir)
@@ -78,7 +76,6 @@ mod tests {
             Chain::default(),
             Chain {
                 name: "statemint".to_string(),
-                relay_chain: Some("polkadot".to_string()),
                 ..Chain::default()
             },
         ];

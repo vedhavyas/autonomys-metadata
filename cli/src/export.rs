@@ -1,14 +1,12 @@
-use std::path::Path;
-use std::{fmt, fs};
-
-use anyhow::{Context, Result};
-use indexmap::IndexMap;
-use serde::{Deserialize, Serialize};
-
 use crate::common::path::QrPath;
 use crate::common::types::ChainPortalId;
 use crate::source::{read_png_source, Source};
 use crate::AppConfig;
+use anyhow::{Context, Result};
+use indexmap::IndexMap;
+use serde::{Deserialize, Serialize};
+use std::path::Path;
+use std::{fmt, fs};
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
 pub(crate) struct ReactAssetPath(String);
@@ -49,7 +47,6 @@ pub(crate) struct ExportChainSpec {
     pub(crate) latest_metadata: ReactAssetPath,
     pub(crate) specs_qr: QrCode,
     pub(crate) testnet: bool,
-    pub(crate) relay_chain: Option<String>,
 }
 
 #[derive(Serialize, Deserialize, Debug, PartialEq, Clone)]
@@ -71,7 +68,7 @@ pub(crate) fn read_export_file(config: &AppConfig) -> Result<ExportData> {
 #[serde(rename_all = "camelCase")]
 pub(crate) struct QrCode {
     pub(crate) path: ReactAssetPath,
-    pub(crate) signed_by: Option<String>,
+    pub(crate) signed_by: String,
     pub(crate) source: Option<Source>,
 }
 
@@ -82,10 +79,7 @@ impl QrCode {
         verifier_name: &String,
     ) -> Result<QrCode> {
         let path = ReactAssetPath::from_fs_path(&qr_path.to_path_buf(), &config.public_dir)?;
-        let signed_by = match qr_path.file_name.is_signed {
-            true => Some(config.verifiers.get(verifier_name).unwrap().name.clone()),
-            false => None,
-        };
+        let signed_by = config.verifiers.get(verifier_name).unwrap().name.clone();
         let source = read_png_source(&qr_path.to_path_buf())?;
         Ok(QrCode {
             path,

@@ -1,9 +1,8 @@
 mod file;
 
-use std::fs;
-
 use crate::cleaner::file::files_to_remove;
 use crate::config::AppConfig;
+use std::fs;
 
 pub(crate) fn clean(config: AppConfig) -> anyhow::Result<()> {
     let files = files_to_remove(&config)?;
