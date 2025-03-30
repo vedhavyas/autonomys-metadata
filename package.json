@@ -1,0 +1,34 @@
+{
+  "name": "autonomys-metadata",
+  "version": "0.1.0",
+  "private": true,
+  "homepage": "https://vedhavyas.com/autonomys-metadata",
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "predeploy": "npm run build",
+    "deploy": "echo > out/.nojekyll && gh-pages -d out --branch=gh-pages --dotfiles",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.7.2",
+    "@fortawesome/free-solid-svg-icons": "^6.7.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
+    "@polkadot/api": "^15.8.1",
+    "bootstrap": "^5.3.3",
+    "next": "15.2.3",
+    "react": "^19.0.0",
+    "react-bootstrap": "^2.10.9",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.2.3",
+    "gh-pages": "^6.3.0",
+    "typescript": "^5"
+  }
+}

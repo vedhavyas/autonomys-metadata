@@ -1,0 +1,35 @@
+.dark {
+    --background-color: #333;
+    --font-color: #fff;
+}
+
+.light {
+    --background-color: #fff;
+    --font-color: #333;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--font-color);
+}
+
+.hide-radio input[type='radio'] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.dropdown-light {
+    background-color: #fff;
+    color: #333;
+}
+
+.dropdown-dark {
+    background-color: #333;
+    color: #fff;
+}
+
+.themeButtonGroup .btn {
+    border: none;
+}
