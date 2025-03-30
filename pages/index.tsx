@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import DisplayQr from "../components/DisplayQr";
 import ChainDataCard from "../components/ChainData";
-import "../styles/global.css";
 import { Dropdown, ButtonGroup, Button, Row, Col } from "react-bootstrap";
 
 interface SpecData {
