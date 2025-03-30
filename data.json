@@ -1,0 +1,89 @@
+{
+  "autonomys": {
+    "title": "autonomys",
+    "color": "#5870B3",
+    "rpcEndpoint": "wss://rpc.mainnet.subspace.foundation/ws",
+    "genesisHash": "0x66455a580aabff303720aa83adbe6c44502922251c03ba73686d5245da9e21bd",
+    "unit": "AI3",
+    "base58prefix": 6094,
+    "icon": "https://raw.githubusercontent.com/vedhavyas/autonomys-metadata/refs/heads/master/icons/autonomys.svg",
+    "decimals": 18,
+    "liveMetaVersion": 2,
+    "metadataQr": {
+      "version": 2,
+      "file": {
+        "path": "qr/autonomys_metadata_2.apng",
+        "signedBy": "Vedhavyas",
+        "source": {
+          "type": "Rpc",
+          "block": "0x6bc788f7e333100e2456451842971f8667765d50c3b6f834a717349313a2937f"
+        }
+      }
+    },
+    "latestMetadata": "qr/autonomys_metadata_2.apng",
+    "specsQr": {
+      "path": "qr/autonomys_specs.png",
+      "signedBy": "Vedhavyas",
+      "source": null
+    },
+    "testnet": false
+  },
+  "taurus": {
+    "title": "taurus",
+    "color": "#5870B3",
+    "rpcEndpoint": "wss://rpc-0.taurus.subspace.network/ws",
+    "genesisHash": "0x295aeafca762a304d92ee1505548695091f6082d3f0aa4d092ac3cd6397a6c5e",
+    "unit": "tAI3",
+    "base58prefix": 6094,
+    "icon": "https://raw.githubusercontent.com/vedhavyas/autonomys-metadata/refs/heads/master/icons/autonomys.svg",
+    "decimals": 18,
+    "liveMetaVersion": 13,
+    "metadataQr": {
+      "version": 13,
+      "file": {
+        "path": "qr/taurus_metadata_13.apng",
+        "signedBy": "Vedhavyas",
+        "source": {
+          "type": "Rpc",
+          "block": "0x95332ee340c0c7f2968c86aa511a243c995c4b039f78ba7d53e47c6a1d9b9e44"
+        }
+      }
+    },
+    "latestMetadata": "qr/taurus_metadata_13.apng",
+    "specsQr": {
+      "path": "qr/taurus_specs.png",
+      "signedBy": "Vedhavyas",
+      "source": null
+    },
+    "testnet": true
+  },
+  "taurus evm domain 0": {
+    "title": "taurus evm domain 0",
+    "color": "#5870B3",
+    "rpcEndpoint": "wss://auto-evm.taurus.autonomys.xyz/ws",
+    "genesisHash": "0x5a367ed131b9d8807f0166651095a9ed51aefa9aaec3152d3eb5cee322220ce6",
+    "unit": "tAI3",
+    "base58prefix": 6094,
+    "icon": "https://raw.githubusercontent.com/vedhavyas/autonomys-metadata/refs/heads/master/icons/autonomys.svg",
+    "decimals": 18,
+    "liveMetaVersion": 3,
+    "metadataQr": {
+      "version": 3,
+      "file": {
+        "path": "qr/taurus_evm_domain_0_metadata_3.apng",
+        "signedBy": "Vedhavyas",
+        "source": {
+          "type": "Rpc",
+          "block": "0xcf7d60a50e708b7970f2a06b162079ffd77249b45c1daa5aa8c6b3e8c713114e"
+        }
+      }
+    },
+    "latestMetadata": "qr/taurus_evm_domain_0_metadata_3.apng",
+    "specsQr": {
+      "path": "qr/taurus_evm_domain_0_specs.png",
+      "signedBy": "Vedhavyas",
+      "source": null
+    },
+    "testnet": true
+  }
+}
