@@ -1,0 +1,21 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: 🛎 Checkout
+        id: checkout
+        uses: actions/checkout@v4
+
+      - uses: ./.github/workflows/deploy
+        id: deploy
+        if: success() || failure() && (steps.collect.outcome == 'failure')
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}

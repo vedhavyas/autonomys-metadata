@@ -1,0 +1,100 @@
+name: Check updates
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */2 * * *'
+
+env:
+  BRANCH_PREFIX: updated-codes
+
+permissions:
+  pull-requests: write
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: 🛎 Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🔧 Install rust dependencies
+        uses: ./.github/workflows/rust-install
+
+      - name: Try to checkout exising PR branch
+        id: checkout-pr
+        run: |
+          SIGN_ME_BRANCH=$(git branch -r --list "origin/$BRANCH_PREFIX-*" --sort=-refname | head -n 1)
+          if [ -z "$SIGN_ME_BRANCH" ]
+          then
+            switched="false"
+          else
+            git checkout --track $SIGN_ME_BRANCH
+            switched="true"
+          fi
+          echo "::set-output name=switched::$switched"
+
+      - name: ⚙ Build metadata-cli
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --release
+
+      - name: ⚙ Update QRs from RPC nodes
+        id: update-nodes
+        run: |
+          cargo run --release -- update --signing-key ${{secrets.SIGNING_KEY}}
+          exit_code=$?
+          if [ $exit_code -eq 12 ]
+          then
+            echo "::set-output name=chainsSkipped::true"
+            exit 0
+          fi
+          echo "::set-output name=chainsSkipped::false"
+          exit $exit_code
+        shell: bash {0}
+
+      - name: ⚙ Run collector
+        id: collect
+        run: |
+          cargo run --release collect
+          exit_code=$?
+          if [ $exit_code -eq 12 ]
+          then
+            echo "::set-output name=chainsSkipped::true"
+            exit 0
+          fi
+          echo "::set-output name=chainsSkipped::false"
+          exit $exit_code
+        shell: bash {0}
+
+      - name: 📌 Commit changes if PR exists
+        if: ${{ steps.checkout-pr.outputs.switched == 'true' }}
+        uses: ./.github/workflows/commit-changes
+        with:
+          message: 'metadata update'
+
+      - name: New PR branch
+        if: ${{ steps.checkout-pr.outputs.switched == 'false' }}
+        id: new-branch
+        run: |
+          NAME="$BRANCH_PREFIX-$(date '+%Y-%m-%d')"
+          echo "::set-output name=name::$NAME"
+
+      - name: Create Pull Request if not exist
+        if: ${{ steps.checkout-pr.outputs.switched == 'false' }}
+        id: cpr
+        uses: peter-evans/create-pull-request@f22a7da129c901513876a2380e2dae9f8e145330
+        with:
+          commit-message: add updated QR codes
+          branch: ${{ steps.new-branch.outputs.name }}
+          delete-branch: true
+          base: master
+          title: '[Automated] Review new metadata QRs'
+          body: |
+            Updated metadata QR codes
+          reviewers: "vedhavyas"
+          draft: false
