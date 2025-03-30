@@ -68,7 +68,7 @@ pub(crate) fn collect_metadata_qrs(
 ) -> Result<Vec<QrPath>> {
     let mut metadata_qrs = vec![];
     for (version, qr) in all_metadata
-        .get(chain_portal_id.replace(" ", "_").as_str())
+        .get(chain_portal_id.as_str())
         .with_context(|| format!("No metadata qr found for {}", chain_portal_id))?
         .iter()
     {

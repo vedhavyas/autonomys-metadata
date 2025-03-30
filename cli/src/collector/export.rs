@@ -39,14 +39,14 @@ pub(crate) fn export_specs(config: &AppConfig, fetcher: RpcFetcher) -> Result<Ex
             collect_metadata_qrs(&all_metadata, &chain.portal_id(), &live_meta_version)?;
 
         let specs_qr = all_specs
-            .get(&chain.portal_id().replace(" ", "_"))
+            .get(&chain.portal_id())
             .with_context(|| format!("No specs qr found for {}", chain.portal_id()))?
             .clone();
 
         let latest_metadata_path = QrPath {
             dir: config.qr_dir.clone(),
             file_name: QrFileName::new(
-                &chain.portal_id().to_lowercase().replace(" ", "_"),
+                &chain.portal_id().to_lowercase(),
                 ContentType::Metadata(meta.meta_values.version),
             ),
         };

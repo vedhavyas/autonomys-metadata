@@ -137,7 +137,7 @@ fn color_default() -> String {
 
 impl Chain {
     pub(crate) fn portal_id(&self) -> String {
-        self.name.to_string()
+        self.name.to_string().replace(" ", "_")
     }
 }
 

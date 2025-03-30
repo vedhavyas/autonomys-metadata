@@ -20,7 +20,7 @@ pub(crate) fn update_metadata(
     let mut error_fetching_data = false;
     for chain in config.chains {
         let encryption = get_crypto(&chain);
-        if !specs_qrs.contains_key(&chain.portal_id()) {
+        if !specs_qrs.contains_key(&chain.portal_id().replace(" ", "_")) {
             let specs_res = match fetcher.fetch_specs(&chain) {
                 Ok(specs_res) => specs_res,
                 Err(err) => {
@@ -49,7 +49,7 @@ pub(crate) fn update_metadata(
         };
         let version = fetched_meta.meta_values.version;
         // Skip if already have QR for the same version
-        if let Some(map) = metadata_qrs.get(&chain.portal_id()) {
+        if let Some(map) = metadata_qrs.get(&chain.portal_id().replace(" ", "_")) {
             if map.contains_key(&version) {
                 continue;
             }

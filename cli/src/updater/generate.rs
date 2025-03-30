@@ -29,8 +29,7 @@ pub(crate) fn generate_metadata_qr(
         &portal_id.to_lowercase(),
         ContentType::Metadata(meta_values.version),
     )
-    .to_string()
-    .replace(" ", "_");
+    .to_string();
     let path = target_dir.join(&file_name);
     info!("⚙️  Generating {}...", file_name);
     generate_qr(
@@ -50,9 +49,7 @@ pub(crate) fn generate_spec_qr(
     signing_key: String,
     encryption: &Encryption,
 ) -> anyhow::Result<PathBuf> {
-    let file_name = QrFileName::new(&portal_id.to_lowercase(), ContentType::Specs)
-        .to_string()
-        .replace(" ", "_");
+    let file_name = QrFileName::new(&portal_id.to_lowercase(), ContentType::Specs).to_string();
     let path = target_dir.join(&file_name);
     let content = ContentAddSpecs::generate(specs);
 

@@ -8,7 +8,7 @@ use frame_metadata::v14::META_RESERVED;
 use frame_metadata::{RuntimeMetadata, RuntimeMetadataPrefixed};
 use generate_message::helpers::{meta_fetch, specs_agnostic, MetaFetched};
 use generate_message::parser::Token;
-use log::{info, warn};
+use log::{debug, warn};
 use reqwest::Url;
 use serde::{Deserialize, Serialize};
 use sp_core::{Decode, Encode};
@@ -117,7 +117,7 @@ fn override_spec_name(meta: &[u8], spec_name: String) -> Vec<u8> {
                                 RuntimeVersion::decode(&mut y.value.as_slice()).unwrap();
                             if runtime_version.spec_name != RuntimeString::Owned(spec_name.clone())
                             {
-                                info!(
+                                debug!(
                                     "⚙️  Overriding spec name from {} to {}",
                                     runtime_version.spec_name, spec_name
                                 );
@@ -133,7 +133,7 @@ fn override_spec_name(meta: &[u8], spec_name: String) -> Vec<u8> {
 
             RuntimeMetadata::V14(metadata_v14)
         }
-        _ => runtime_metadata,
+        _ => panic!("Runtime metadata version changed from 14"),
     };
 
     RuntimeMetadataPrefixed(META_RESERVED, runtime_metadata).encode()
