@@ -57,7 +57,7 @@
     },
     "testnet": true
   },
-  "taurus evm domain 0": {
+  "taurus_evm_domain_0": {
     "title": "taurus evm domain 0",
     "color": "#5870B3",
     "rpcEndpoint": "wss://auto-evm.taurus.autonomys.xyz/ws",
