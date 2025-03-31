@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import DisplayQr from "../components/DisplayQr";
 import ChainDataCard from "../components/ChainData";
 import { Dropdown, ButtonGroup, Button, Row, Col } from "react-bootstrap";
+import PolkadotVault from "../components/PolkadotVault";
 
 interface SpecData {
   path: string;
@@ -117,6 +118,8 @@ const HomePage = () => {
             color={activeChainData.color}
           />}
       </div>
+
+      <PolkadotVault theme={theme} />
     </div>
   );
 };
