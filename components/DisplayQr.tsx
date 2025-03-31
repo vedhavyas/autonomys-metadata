@@ -8,9 +8,10 @@ interface ImagesDisplayProps {
   latestMetadata: string;
   specsQrPath: string;
   color: string;
+  onLoad: () => void;
 }
 
-const DisplayQr: React.FC<ImagesDisplayProps> = ({ latestMetadata, specsQrPath, color }) => {
+const DisplayQr: React.FC<ImagesDisplayProps> = ({ latestMetadata, specsQrPath, color, onLoad }) => {
   const [activeImage, setActiveImage] = useState(specsQrPath);
 
   return (
@@ -41,7 +42,10 @@ const DisplayQr: React.FC<ImagesDisplayProps> = ({ latestMetadata, specsQrPath, 
       </ButtonGroup>
       <Card className="m-2 p-0">
         <Card.Body className="text-center">
-          <Image src={`${process.env.NODE_ENV === 'production' ? '/autonomys-metadata/' : ''}${activeImage}`} fluid className="mx-auto d-block" alt={`${activeImage}`} />
+          <Image
+              src={`${process.env.NODE_ENV === 'production' ? '/autonomys-metadata/' : ''}${activeImage}`} fluid className="mx-auto d-block" alt={`${activeImage}`}
+              onLoad={onLoad}
+          />
         </Card.Body>
       </Card>
     </div>

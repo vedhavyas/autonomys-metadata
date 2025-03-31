@@ -41,6 +41,7 @@ const HomePage = () => {
   const [theme, setTheme] = useState("light");
   const [data, setData] = useState<DataMap | null>(null);
   const [activeButton, setActiveButton] = useState<string>("");
+  const [isQrLoaded, setIsQrLoaded] = useState<boolean>(false);
 
   useEffect(() => {
     const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
@@ -52,6 +53,12 @@ const HomePage = () => {
     document.body.classList.remove("dark");
     document.body.classList.add(theme);
   }, [theme]);
+
+  useEffect(() => {
+    if(data && activeButton !== "") {
+      setIsQrLoaded(false);
+    }
+  }, [data, activeButton]);
 
   useEffect(() => {
     loadData().then((chainData: DataMap) =>{
@@ -92,7 +99,7 @@ const HomePage = () => {
           {Object.values(data).map((chainData: ChainData) => (
             <Button
               key={chainData.title}
-              onClick={() => setActiveButton(chainData.title)}
+              onClick={() => {setActiveButton(chainData.title); setIsQrLoaded(false)}}
               style={{
                 backgroundColor: chainData.title === activeButton ? chainData.color : "grey",
                 borderColor: chainData.title === activeButton ? chainData.color : "grey",
@@ -116,10 +123,11 @@ const HomePage = () => {
             latestMetadata={activeChainData.latestMetadata}
             specsQrPath={activeChainData.specsQr.path}
             color={activeChainData.color}
+            onLoad={() => setIsQrLoaded(true)}
           />}
       </div>
 
-      <PolkadotVault theme={theme} />
+      {isQrLoaded && <PolkadotVault theme={theme} />}
     </div>
   );
 };
