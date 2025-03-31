@@ -37,8 +37,8 @@ const ChainDataCard: React.FC<ChainDataCardProps> = ({ chainData }) => {
               <div style={{ flex: 3, marginLeft: "40px" }}>
                 <p><strong>Genesis Hash: </strong>{shortenHash(chainData.genesisHash)}</p>
                 <p><strong>Token: </strong>{chainData.unit}</p>
-                <p><strong>Live Metadata Version: </strong>{chainData.liveMetaVersion}</p>
-                <p><strong>Testnet: </strong>{chainData.testnet ? "Yes" : "No"}</p>
+                <p><strong>Latest Spec Version: </strong>{chainData.liveMetaVersion}</p>
+                <p><strong>Network: </strong>{chainData.testnet ? "Testnet" : "Mainnet"}</p>
               </div>
             </Card.Body>
           </Card>

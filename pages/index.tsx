@@ -31,6 +31,10 @@ function toTitleCase(str: string) {
     .join(" ");
 }
 
+async function loadData() {
+  const chainDataResponse = await fetch(`${process.env.NODE_ENV === 'production' ? '/autonomys-metadata' : ''}/data.json`);
+  return chainDataResponse.json();
+}
 
 const HomePage = () => {
   const [theme, setTheme] = useState("light");
@@ -49,19 +53,15 @@ const HomePage = () => {
   }, [theme]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(`${process.env.NODE_ENV === 'production' ? '/autonomys-metadata' : ''}/data.json`);
-      const jsonData: DataMap = await response.json();
-      setData(jsonData);
-      setActiveButton(Object.values(jsonData)[0].title);
-    };
-    fetchData();
+    loadData().then((chainData: DataMap) =>{
+      setData(chainData);
+      setActiveButton(Object.values(chainData)[0].title);
+    })
   }, []);
 
 
-  if (!data) return "Loading...";
-
-  const activeChainData = data[activeButton];
+  if (!data || activeButton === "") return "Loading...";
+  const activeChainData = data[activeButton.replaceAll(" ", "_")];
 
   return (
     <div className="container py-5">
