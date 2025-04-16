@@ -7,14 +7,15 @@ on:
 
 jobs:
   deploy:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
 
     steps:
       - name: 🛎 Checkout
         id: checkout
         uses: actions/checkout@v4
 
-      - uses: ./.github/workflows/rust-install
+      - name: 🔧 Install rust dependencies
+        uses: ./.github/workflows/rust-install
 
       - name: ⚙ Run collector
         id: collect

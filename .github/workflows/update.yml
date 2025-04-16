@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   update:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: 🛎 Checkout
         uses: actions/checkout@v4
@@ -36,12 +36,6 @@ jobs:
             switched="true"
           fi
           echo "::set-output name=switched::$switched"
-
-      - name: ⚙ Build metadata-cli
-        uses: actions-rs/cargo@v1
-        with:
-          command: build
-          args: --release
 
       - name: ⚙ Update QRs from RPC nodes
         id: update-nodes
