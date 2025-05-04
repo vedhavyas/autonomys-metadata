@@ -37,19 +37,19 @@
     "base58prefix": 6094,
     "icon": "https://raw.githubusercontent.com/vedhavyas/autonomys-metadata/refs/heads/master/icons/autonomys.svg",
     "decimals": 18,
-    "liveMetaVersion": 14,
+    "liveMetaVersion": 15,
     "metadataQr": {
-      "version": 14,
+      "version": 15,
       "file": {
-        "path": "qr/taurus_metadata_14.apng",
+        "path": "qr/taurus_metadata_15.apng",
         "signedBy": "Vedhavyas",
         "source": {
           "type": "Rpc",
-          "block": "0x82c139933c4c081ac221a0abbf2dcb1b974c8f5bb3aadb182c45fc8079639943"
+          "block": "0xd06a1b94b7dcc24f71097654521810379c748378836d118dfff0fad3a1efadf2"
         }
       }
     },
-    "latestMetadata": "qr/taurus_metadata_14.apng",
+    "latestMetadata": "qr/taurus_metadata_15.apng",
     "specsQr": {
       "path": "qr/taurus_specs.png",
       "signedBy": "Vedhavyas",
@@ -66,19 +66,19 @@
     "base58prefix": 6094,
     "icon": "https://raw.githubusercontent.com/vedhavyas/autonomys-metadata/refs/heads/master/icons/autonomys.svg",
     "decimals": 18,
-    "liveMetaVersion": 4,
+    "liveMetaVersion": 5,
     "metadataQr": {
-      "version": 4,
+      "version": 5,
       "file": {
-        "path": "qr/taurus_evm_domain_0_metadata_4.apng",
+        "path": "qr/taurus_evm_domain_0_metadata_5.apng",
         "signedBy": "Vedhavyas",
         "source": {
           "type": "Rpc",
-          "block": "0xb3fc0a9b2e4a8e0fc397dd1b84b7a7e4513b1dd095e9ed8aa8e2cd0d8dc5d979"
+          "block": "0x56503447444c14a75bda847617938dd385eda04439fbf83e9465c4374ca8290a"
         }
       }
     },
-    "latestMetadata": "qr/taurus_evm_domain_0_metadata_4.apng",
+    "latestMetadata": "qr/taurus_evm_domain_0_metadata_5.apng",
     "specsQr": {
       "path": "qr/taurus_evm_domain_0_specs.png",
       "signedBy": "Vedhavyas",
