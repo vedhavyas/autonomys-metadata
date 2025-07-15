@@ -8,19 +8,19 @@
     "base58prefix": 6094,
     "icon": "https://raw.githubusercontent.com/vedhavyas/autonomys-metadata/refs/heads/master/icons/autonomys.svg",
     "decimals": 18,
-    "liveMetaVersion": 3,
+    "liveMetaVersion": 4,
     "metadataQr": {
-      "version": 3,
+      "version": 4,
       "file": {
-        "path": "qr/autonomys_metadata_3.apng",
+        "path": "qr/autonomys_metadata_4.apng",
         "signedBy": "Vedhavyas",
         "source": {
           "type": "Rpc",
-          "block": "0xe2d181845ecf43d0b06a2a4c309b12a36d0303118cb4b10cb879dabd4b004057"
+          "block": "0x02e413200ba30768e33a9c3c80ba8a8e8d1a9ca61d4ffeb9b328dde3c7c05192"
         }
       }
     },
-    "latestMetadata": "qr/autonomys_metadata_3.apng",
+    "latestMetadata": "qr/autonomys_metadata_4.apng",
     "specsQr": {
       "path": "qr/autonomys_specs.png",
       "signedBy": "Vedhavyas",
