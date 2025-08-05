@@ -37,19 +37,19 @@
     "base58prefix": 6094,
     "icon": "https://raw.githubusercontent.com/vedhavyas/autonomys-metadata/refs/heads/master/icons/autonomys.svg",
     "decimals": 18,
-    "liveMetaVersion": 18,
+    "liveMetaVersion": 20,
     "metadataQr": {
-      "version": 18,
+      "version": 20,
       "file": {
-        "path": "qr/taurus_metadata_18.apng",
+        "path": "qr/taurus_metadata_20.apng",
         "signedBy": "Vedhavyas",
         "source": {
           "type": "Rpc",
-          "block": "0x010e33dc51700cfe0dc3b76eb2fd028de78b22791dd614b942bcbf6d3d2e135e"
+          "block": "0xf4b7876cc6c868ac9c1610c2a3a6afc439c6bf687b3aa3bafd61059ab96185fe"
         }
       }
     },
-    "latestMetadata": "qr/taurus_metadata_18.apng",
+    "latestMetadata": "qr/taurus_metadata_20.apng",
     "specsQr": {
       "path": "qr/taurus_specs.png",
       "signedBy": "Vedhavyas",
