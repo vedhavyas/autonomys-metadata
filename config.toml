@@ -19,25 +19,13 @@ testnet = false
 verifier = "vedhavyas"
 
 [[chains]]
-name = "Taurus"
+name = "Chronos"
 empty_path = true
 color = "#5870B3"
 icon = "https://raw.githubusercontent.com/vedhavyas/autonomys-metadata/refs/heads/master/icons/autonomys.svg"
 rpc_endpoints = [
-    "wss://rpc-0.taurus.subspace.network/ws",
-    "wss://rpc-1.taurus.subspace.network/ws"
+    "wss://rpc-0.chronos.autonomys.xyz/ws",
+    "wss://rpc-1.chronos.autonomys.xyz/ws"
 ]
 testnet = true
 verifier = "vedhavyas"
-
-[[chains]]
-name = "Taurus EVM Domain 0"
-empty_path = true
-color = "#5870B3"
-icon = "https://raw.githubusercontent.com/vedhavyas/autonomys-metadata/refs/heads/master/icons/autonomys.svg"
-rpc_endpoints = [
-    "wss://auto-evm.taurus.autonomys.xyz/ws"
-]
-testnet = true
-verifier = "vedhavyas"
-encryption = "ethereum"
