@@ -8,19 +8,19 @@
     "base58prefix": 6094,
     "icon": "https://raw.githubusercontent.com/vedhavyas/autonomys-metadata/refs/heads/master/icons/autonomys.svg",
     "decimals": 18,
-    "liveMetaVersion": 5,
+    "liveMetaVersion": 6,
     "metadataQr": {
-      "version": 5,
+      "version": 6,
       "file": {
-        "path": "qr/autonomys_metadata_5.apng",
+        "path": "qr/autonomys_metadata_6.apng",
         "signedBy": "Vedhavyas",
         "source": {
           "type": "Rpc",
-          "block": "0x9a5c79d225c146c94c975ab14da8c24c73d8383de8d8cf791982ea66b582b3b4"
+          "block": "0x55cc94196eb662f0c5b2a55005b752dcd23ac253911e725fc0cf2382bb4d7e32"
         }
       }
     },
-    "latestMetadata": "qr/autonomys_metadata_5.apng",
+    "latestMetadata": "qr/autonomys_metadata_6.apng",
     "specsQr": {
       "path": "qr/autonomys_specs.png",
       "signedBy": "Vedhavyas",
@@ -31,25 +31,25 @@
   "chronos": {
     "title": "chronos",
     "color": "#5870B3",
-    "rpcEndpoint": "wss://rpc-0.chronos.autonomys.xyz/ws",
-    "genesisHash": "0xe979a8ec5540bfe824aa25b6a43452aff4afe71a75c467766fe17bb8d4e7a86c",
+    "rpcEndpoint": "wss://rpc.chronos.autonomys.xyz/ws",
+    "genesisHash": "0x91912b429ce7bf2975440a0920b46a892fddeeaed6ccc11c93f2d57ad1bd69ab",
     "unit": "tAI3",
     "base58prefix": 6094,
     "icon": "https://raw.githubusercontent.com/vedhavyas/autonomys-metadata/refs/heads/master/icons/autonomys.svg",
     "decimals": 18,
-    "liveMetaVersion": 5,
+    "liveMetaVersion": 6,
     "metadataQr": {
-      "version": 5,
+      "version": 6,
       "file": {
-        "path": "qr/chronos_metadata_5.apng",
+        "path": "qr/chronos_metadata_6.apng",
         "signedBy": "Vedhavyas",
         "source": {
           "type": "Rpc",
-          "block": "0xf41f06ed0eaac03584d5c82ffc2a66294e8f1bcca06fae022c8738b56c630f8d"
+          "block": "0x9d0ba491b57d0f4634033a4d86128987f4fd78cd0ecd961f45febe3c6b6d6995"
         }
       }
     },
-    "latestMetadata": "qr/chronos_metadata_5.apng",
+    "latestMetadata": "qr/chronos_metadata_6.apng",
     "specsQr": {
       "path": "qr/chronos_specs.png",
       "signedBy": "Vedhavyas",
